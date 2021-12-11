@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form id="ViewForm">
+
+        <div class="card">
+            <div class="card-header">
+                #{langue.liste_approvisionnements}
+            </div>
+
+            <div class="card-body">
+                <p:contextMenu id="ViewContextMenu" for="datalist">  
+                    <p:menuitem value="#{langue.ajouter}" onclick="document.getElementById('ActionForm:create').click();" icon="ui-icon-plus"/>                
+                    <p:menuitem value="#{langue.modifier}" onclick="document.getElementById('ActionForm:update').click();" icon="ui-icon-pencil"/>
+                    <p:menuitem value="#{langue.supprimer}" onclick="document.getElementById('ActionForm:delete').click();" icon="ui-icon-trash"/>
+                    <p:separator/>
+                </p:contextMenu>
+
+                <p:dataTable id="datalist"
+                             value="#{approvisionnementController.list_livraisons}"
+                             var="item"
+                             emptyMessage="#{langue.tableau_vide}"
+                             rows="20"
+                             rowKey="#{item.idLivraison}"
+                             rowsPerPageTemplate="20,40,60,80,100"
+                             selection="#{approvisionnementController.livraison}"
+                             selectionMode="single"
+                             paginator="true"
+                             paginatorPosition="bottom"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+
+                    <p:ajax event="rowSelect" update=":ActionForm, :ViewForm:ViewContextMenu" />
+
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column headerText="#{langue.num_ref}"
+                                      style="width: 15%" />
+                            <p:column headerText="#{langue.libelle}"
+                                      style="width: 40%;"/>
+                            <p:column headerText="#{langue.montant}"
+                                      style="width: 20%; text-align: right;"/>
+                            <p:column headerText="#{langue.date_enreg}"
+                                      style="width: 20%; text-align: right;"/>
+                            <p:column headerText="#{langue.etat}"
+                                      style="width: 20%; text-align: right; "/>
+                            <p:column headerText="#{langue.date_liv}"
+                                      style="width: 20%; text-align: right;"/>
+                        </p:row>
+                    </p:columnGroup>
+
+                    <p:column filterBy="#{item.numeroRef}"
+                              filterMatchMode="contains"
+                              filterable="true">
+                        #{item.numeroRef}
+                    </p:column>
+
+                    <p:column filterBy="#{item.libelle}"
+                              filterMatchMode="contains">
+                        #{item.libelle}
+                    </p:column>
+                    
+                    <p:column style="text-align: right; ">
+                        <h:outputText value="#{item.coutTotal}">
+                            <f:convertNumber maxFractionDigits="0" />
+                        </h:outputText>
+                    </p:column>
+                    
+                    <p:column style="text-align: right;">
+                        <h:outputText value="#{item.dateEnregistrement}">
+                            <f:convertDateTime dateStyle="medium" type="date"/>
+                        </h:outputText>
+                    </p:column>
+                    
+                     <p:column style="text-align: right;">
+                         <h:outputText value="#{item.livree ? langue.livree : langue.non_livree }">
+                            <f:convertDateTime dateStyle="medium" type="date"/>
+                        </h:outputText>
+                    </p:column>
+                    
+                     <p:column style="text-align: right;">
+                        <h:outputText value="#{item.dateLivraison}">
+                            <f:convertDateTime dateStyle="medium" type="date"/>
+                        </h:outputText>
+                    </p:column>
+                    
+                </p:dataTable>
+            </div>
+        </div>
+
+    </h:form>
+
+</ui:composition>
+

@@ -1,0 +1,58 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cm.louisstark.gestock.sessions;
+
+import cm.louisstark.gestock.entities.Mouchard;
+import cm.louisstark.gestock.entities.Utilisateur;
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author Louis Stark
+ */
+@Stateless
+public class MouchardFacade extends AbstractFacade<Mouchard> implements MouchardFacadeLocal {
+
+    @PersistenceContext(unitName = "cm.louisstark_geStock_war_1.0-SNAPSHOTPU")
+    private EntityManager em;
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+
+    public MouchardFacade() {
+        super(Mouchard.class);
+    }
+
+    @Override
+    public List<Mouchard> findAllRange() {
+        Query q = em.createQuery("SELECT m FROM Mouchard m ORDER BY m.dateOperation, m.heureOperation DESC");
+        return q.getResultList();
+    }
+
+    @Override
+    public List<Mouchard> findAll_by_user(Utilisateur u) {
+        Query q = em.createQuery("SELECT m FROM Mouchard m WHERE m.utilisateur.idUtilisateur = :id_u ORDER BY m.dateOperation, m.heureOperation DESC");
+        q.setParameter("id_u", u.getIdUtilisateur());
+        return q.getResultList();
+    }
+
+    @Override
+    public int nextId() {
+        Query q = em.createQuery("SELECT MAX(m.idMouchard) FROM Mouchard m");
+        try {
+            return (Integer) q.getResultList().get(0) + 1;
+        } catch (Exception e) {
+        }
+        return 1;
+    }
+
+}

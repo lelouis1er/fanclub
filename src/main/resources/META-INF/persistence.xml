@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="cm.louisstark_geStock_war_1.0-SNAPSHOTPU" transaction-type="JTA">
+    <jta-data-source>java:app/jdbc/gestock_db</jta-data-source>
+    <class>cm.louisstark.gestock.entities.TypeMembre</class>
+    <class>cm.louisstark.gestock.entities.Utilisateur</class>
+    <class>cm.louisstark.gestock.entities.RoleUtilisateur</class>
+    <class>cm.louisstark.gestock.entities.RolePrivilege</class>
+    <class>cm.louisstark.gestock.entities.Mouchard</class>
+    <class>cm.louisstark.gestock.entities.FanClub</class>
+    <class>cm.louisstark.gestock.entities.Membre</class>
+    <class>cm.louisstark.gestock.entities.RestrictionPrivilege</class>
+    <class>cm.louisstark.gestock.entities.ModelOperation</class>
+    <class>cm.louisstark.gestock.entities.Operation</class>
+    <class>cm.louisstark.gestock.entities.SessionOp</class>
+    <class>cm.louisstark.gestock.entities.Menu</class>
+    <class>cm.louisstark.gestock.entities.PrivilegesUtilisateur</class>
+    <class>cm.louisstark.gestock.entities.TypeOperation</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
+</persistence>
