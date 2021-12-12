@@ -26,14 +26,25 @@ import net.sf.jasperreports.engine.export.JRXlsExporter;
 public final class Printer {
 
     protected JasperPrint jasperPrint;
-
+/* Postgres
     protected final String db_user = "postgres";
     protected final String db_user_pass = "1234";
     protected final String port = "5432";
-    protected final String db_name = "gestock_db";
+    protected final String db_name = "fanclub_db";
     protected String url_server = "jdbc:postgresql://localhost:" + port + "/" + db_name;
 
     protected final String driver = "org.postgresql.Driver";
+*/
+    
+    /* MySql */
+    protected final String db_user = "root";
+    protected final String db_user_pass = "";
+    protected final String port = "3306";
+    protected final String db_name = "fanclub_db";
+    protected String url_server = "jdbc:mysql://localhost:" + port + "/" + db_name;
+
+    protected final String driver = "com.mysql.jdbc.Driver";
+    
     protected Connection conn;
 
     public Printer() {
