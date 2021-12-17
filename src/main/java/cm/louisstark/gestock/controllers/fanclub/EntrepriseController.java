@@ -8,8 +8,6 @@ package cm.louisstark.gestock.controllers.fanclub;
 import cm.louisstark.gestock.entities.FanClub;
 import cm.louisstark.gestock.utilitaires.Utilitaires;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.primefaces.PrimeFaces;
@@ -48,6 +46,7 @@ public class EntrepriseController extends AbstractFanClubController implements S
             } else {
                 if (mode.equals("Edit")) {
                     if (fanClub.getIdFanclub() != null && fanClub.getIdFanclub() != 0) {
+                        fanClub.setDateCreation(format.parse(date_creation));
                         
                         fanClubFacadeLocal.edit(fanClub);
 

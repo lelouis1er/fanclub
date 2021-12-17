@@ -34,14 +34,14 @@ public class MembreFacade extends AbstractFacade<Membre> implements MembreFacade
 
     @Override
     public List<Membre> findAllBy_societe(FanClub fc) {
-        Query q = em.createQuery("SELECT m FROM Membre m WHERE m.fanClub.idFanClub = :id_f ");
+        Query q = em.createQuery("SELECT m FROM Membre m WHERE m.fanClub.idFanclub = :id_f ");
         q.setParameter("id_f", fc.getIdFanclub());
         return q.getResultList();
     }
 
     @Override
     public Integer nextId() {
-        Query q = em.createQuery("SELECT MAX(m.idMembre) FROM Membre m");
+        Query q = em.createQuery("SELECT MAX(m.idmembre) FROM Membre m");
         try {
             return (Integer) q.getResultList().get(0) + 1;
         } catch (Exception e) {

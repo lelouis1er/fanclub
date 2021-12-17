@@ -63,8 +63,12 @@ public class FilterUser implements Filter {
                 .createValueExpression(facesContext.getELContext(), "#{manageBean}", SessionManagerImpl.class);
         sessionManager = (SessionManager) ve.getValue(facesContext.getELContext());
 
-        if (sessionManager.is_employee()) {
-            req.getRequestDispatcher("/WEB-INF/template/401.xhtml?faces-redirect=true").forward(request, response);
+        try {
+            if (sessionManager.is_employee()) {
+                req.getRequestDispatcher("/WEB-INF/template/401.xhtml?faces-redirect=true").forward(request, response);
+            }
+        } catch (Exception e) {
+            res.sendRedirect(req.getContextPath() +"/index.xhtml");
         }
 
         chain.doFilter(request, response);

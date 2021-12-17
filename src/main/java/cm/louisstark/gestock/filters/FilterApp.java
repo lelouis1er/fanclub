@@ -30,7 +30,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Louis Stark
  */
-@WebFilter(filterName = "filterApp", urlPatterns = {"/parametres/*", "/entreprise/*", "/application/*"})
+@WebFilter(filterName = "filterApp", urlPatterns = {"/parametres/*", "/fanclub/*", "/application/*"})
 public class FilterApp implements Filter {
 
     @ManagedProperty(value = "manageBean")

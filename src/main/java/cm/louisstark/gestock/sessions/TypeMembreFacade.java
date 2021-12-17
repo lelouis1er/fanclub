@@ -9,6 +9,7 @@ import cm.louisstark.gestock.entities.TypeMembre;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,16 @@ public class TypeMembreFacade extends AbstractFacade<TypeMembre> implements Type
 
     public TypeMembreFacade() {
         super(TypeMembre.class);
+    }
+
+    @Override
+    public Integer nextId() {
+        Query q = em.createQuery("SELECT MAX(t.idTypeMembre) FROM TypeMembre t");
+        try {
+            return (Integer) q.getResultList().get(0) + 1;
+        } catch (Exception e) {
+        }
+        return 1;
     }
     
 }

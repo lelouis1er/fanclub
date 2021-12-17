@@ -265,11 +265,17 @@ public abstract class SuperController {
         define_list_operations();
         return list_operations;
     }
-
-    
-    
     ///////////////////////////////// Setter et getters -------------------------------------
     
+    
+    public FanClub getFanClub() {
+        return fanClub;
+    }
+
+    public void setFanClub(FanClub fanClub) {    
+        this.fanClub = fanClub;
+        define_create_update_delete_details(fanClub);
+    }
 
     public Menu getMenu() {
         return menu;
@@ -278,6 +284,42 @@ public abstract class SuperController {
     public void setMenu(Menu menu) {
         this.menu = menu;
         define_create_update_delete_details(menu);
+    }
+
+    public Membre getMembre() {
+        return membre;
+    }
+
+    public void setMembre(Membre membre) {
+        this.membre = membre;
+        define_create_update_delete_details(membre);
+    }
+
+    public TypeMembre getTypeMembre() {
+        return typeMembre;
+    }
+
+    public void setTypeMembre(TypeMembre typeMembre) {
+        this.typeMembre = typeMembre;
+        define_create_update_delete_details(typeMembre);
+    }
+
+    public ModelOperation getModelOperation() {
+        return modelOperation;
+    }
+
+    public void setModelOperation(ModelOperation modelOperation) {
+        this.modelOperation = modelOperation;
+        define_create_update_delete_details(modelOperation);
+    }
+
+    public Operation getOperation() {
+        return operation;
+    }
+
+    public void setOperation(Operation operation) {
+        this.operation = operation;
+        define_create_update_delete_details(operation);
     }
 
 

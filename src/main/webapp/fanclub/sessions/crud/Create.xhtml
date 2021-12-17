@@ -25,15 +25,15 @@
             <div class="form-group">
                 <label>
                     #{langue.entreprise} 
-                    <p:selectOneMenu value="#{sessionController.societe.idSociete}"
+                    <p:selectOneMenu value="#{sessionController.fanClub.idFanclub}"
                                      class="form-control"
                                      filter="true"
                                      filterMatchMode="contains">
                         <f:selectItem itemLabel="#{langue.choisir}" itemValue="0" />
-                        <f:selectItems value="#{sessionController.list_societe}"
+                        <f:selectItems value="#{sessionController.list_fanClub}"
                                        var="item_el"
-                                       itemLabel="#{item_el.nom} (#{item_el.code})"
-                                       itemValue="#{item_el.idSociete}" />
+                                       itemLabel="#{item_el.nom}"
+                                       itemValue="#{item_el.idFanclub}" />
                     </p:selectOneMenu>
                 </label>
             </div>
@@ -42,7 +42,7 @@
             <div class="form-group">
                 <label>
                     #{langue.Nom}
-                    <p:inputText value="#{sessionController.session.nom}"
+                    <p:inputText value="#{sessionController.session.libelle}"
                                  class="form-control"/>
                 </label>
             </div>

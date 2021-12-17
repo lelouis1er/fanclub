@@ -29,5 +29,7 @@ public interface TypeMembreFacadeLocal {
     List<TypeMembre> findRange(int[] range);
 
     int count();
+
+    public Integer nextId();
     
 }

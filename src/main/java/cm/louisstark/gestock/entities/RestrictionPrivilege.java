@@ -15,6 +15,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -23,6 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author lstark
  */
 @Entity
+@Table(name = "RestrictionPrivilege")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "RestrictionPrivilege.findAll", query = "SELECT r FROM RestrictionPrivilege r"),

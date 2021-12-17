@@ -23,7 +23,7 @@
                 </p:contextMenu>
 
                 <p:dataTable id="datalist"
-                             value="#{privilegesController.list_privilegesutilisateurs}"
+                             value="#{privilegesController.list_privilegesUtilisateurs}"
                              var="item"
                              emptyMessage="#{langue.tableau_vide}"
                              rows="20"
@@ -68,10 +68,10 @@
                         #{item.description}
                     </p:column>
 
-                    <p:column filterBy="#{item.idmenu.nom}"
+                    <p:column filterBy="#{item.menu.nom}"
                               filterMatchMode="contains"
                               filterable="true">
-                        #{item.idmenu.nom}
+                        #{item.menu.nom}
                     </p:column>
 
                 </p:dataTable>

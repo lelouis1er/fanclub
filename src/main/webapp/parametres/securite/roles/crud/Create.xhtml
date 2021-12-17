@@ -75,23 +75,23 @@
                         </p:row>
                     </p:columnGroup>
 
-                    <p:column filterBy="#{item_r.idprivilege.nom}"
+                    <p:column filterBy="#{item_r.privilegesUtilisateur.nom}"
                               filterMatchMode="contains"
                               filterable="true">
-                        #{item_r.idprivilege.nom}
+                        #{item_r.privilegesUtilisateur.nom}
                     </p:column>
 
                     <p:column>
                         <p:cellEditor>
                             <f:facet name="output">
-                                <p:selectBooleanButton  value="#{item_r.cancreate}"
+                                <p:selectBooleanButton  value="#{item_r.canCreate}"
                                                         onLabel="#{langue.Oui}"
                                                         offLabel="#{langue.Non}">
                                     <p:ajax update=":CreateDlgForm:datalist2" />
                                 </p:selectBooleanButton>
                             </f:facet>
                             <f:facet name="input">
-                                <p:selectBooleanButton  value="#{item_r.cancreate}"
+                                <p:selectBooleanButton  value="#{item_r.canCreate}"
                                                         onLabel="#{langue.Oui}"
                                                         offLabel="#{langue.Non}">
                                     <p:ajax update=":CreateDlgForm:datalist2" />
@@ -103,14 +103,14 @@
                     <p:column>
                         <p:cellEditor>
                             <f:facet name="output">
-                                <p:selectBooleanButton  value="#{item_r.canupdate}"
+                                <p:selectBooleanButton  value="#{item_r.canUpdate}"
                                                         onLabel="#{langue.Oui}"
                                                         offLabel="#{langue.Non}">
                                     <p:ajax update=":CreateDlgForm:datalist2" />
                                 </p:selectBooleanButton>
                             </f:facet>
                             <f:facet name="input">
-                                <p:selectBooleanButton  value="#{item_r.canupdate}"
+                                <p:selectBooleanButton  value="#{item_r.canUpdate}"
                                                         onLabel="#{langue.Oui}"
                                                         offLabel="#{langue.Non}">
                                     <p:ajax update=":CreateDlgForm:datalist2" />
@@ -122,14 +122,14 @@
                     <p:column>
                         <p:cellEditor>
                             <f:facet name="output">
-                                <p:selectBooleanButton  value="#{item_r.candelete}"
+                                <p:selectBooleanButton  value="#{item_r.canDelete}"
                                                         onLabel="#{langue.Oui}"
                                                         offLabel="#{langue.Non}">
                                     <p:ajax update=":CreateDlgForm:datalist2" />
                                 </p:selectBooleanButton>
                             </f:facet>
                             <f:facet name="input">
-                                <p:selectBooleanButton  value="#{item_r.candelete}"
+                                <p:selectBooleanButton  value="#{item_r.canDelete}"
                                                         onLabel="#{langue.Oui}"
                                                         offLabel="#{langue.Non}">
                                     <p:ajax update=":CreateDlgForm:datalist2" />

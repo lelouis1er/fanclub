@@ -9,6 +9,8 @@ import cm.louisstark.gestock.controllers.SuperController;
 import cm.louisstark.gestock.entities.FanClub;
 import cm.louisstark.gestock.utilitaires.Utilitaires;
 import cm.louisstark.gestock.entities.Membre;
+import cm.louisstark.gestock.entities.TypeMembre;
+import java.text.SimpleDateFormat;
 import org.primefaces.PrimeFaces;
 
 /**
@@ -17,6 +19,10 @@ import org.primefaces.PrimeFaces;
  */
 public abstract class AbstractMembreController extends SuperController {
 
+    protected String ddn = "";
+    protected SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+    
     @Override
     public void define_create_update_delete_details(Object o) {
         try {
@@ -53,10 +59,20 @@ public abstract class AbstractMembreController extends SuperController {
         }
     }
 
+    @Override
+    public void define_list_typeMembre() {
+        try {
+            list_typeMembres = typeMembreFacadeLocal.findAll();
+        } catch (Exception e) {
+        }
+    }
+    
+
     public void prepareCreate() {
         mode = "Create";
         try {
             membre = new Membre();
+            typeMembre = new TypeMembre(0);
             fanClub = new FanClub(0);
 
             PrimeFaces.current().executeScript("PF('CreateDialog').show()");
@@ -76,11 +92,26 @@ public abstract class AbstractMembreController extends SuperController {
             } else {
                 fanClub = new FanClub(0);
             }
+            
+            if (membre.getTypeMembre() != null) {
+                typeMembre = membre.getTypeMembre();
+            } else {
+                typeMembre = new TypeMembre(0);
+            }
+            ddn = format.format(membre.getDdn());
 
             PrimeFaces.current().executeScript("PF('CreateDialog').show()");
         } catch (Exception e) {
             Utilitaires.addErrorMessage(e, "Message : " + e.getMessage());
         }
+    }
+
+    public String getDdn() {
+        return ddn;
+    }
+
+    public void setDdn(String ddn) {
+        this.ddn = ddn;
     }
 
 }

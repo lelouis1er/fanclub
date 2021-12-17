@@ -16,6 +16,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -26,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author lstark
  */
 @Entity
+@Table(name = "Operation")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Operation.findAll", query = "SELECT o FROM Operation o"),

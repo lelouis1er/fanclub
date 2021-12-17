@@ -42,18 +42,18 @@
                 <h:panelGroup style="float: right">
                     <div class="form-group">
                         <h:panelGrid columns="2">
-                            <h:outputLabel value="#{langue.entreprise} :  " for="ent"/>
+                            <h:outputLabel value="#{langue.fanclub} :  " for="ent"/>
                             <p:selectOneMenu id="ent"
-                                             value="#{employesController.societe.idSociete}"
+                                             value="#{employesController.fanClub.idFanclub}"
                                              class=""
                                              filter="true"
                                              filterMatchMode="contains">
                                 <p:ajax update=":ViewForm" />
                                 <f:selectItem itemLabel="#{langue.Toutes}" itemValue="0" />
-                                <f:selectItems value="#{employesController.list_societe}"
+                                <f:selectItems value="#{employesController.list_fanClub}"
                                                var="item_el"
-                                               itemLabel="#{item_el.nom} (#{item_el.code})"
-                                               itemValue="#{item_el.idSociete}" />
+                                               itemLabel="#{item_el.nom}"
+                                               itemValue="#{item_el.idFanclub}" />
                             </p:selectOneMenu>
                         </h:panelGrid>
                     </div>

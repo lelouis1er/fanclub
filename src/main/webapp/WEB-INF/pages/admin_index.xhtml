@@ -116,10 +116,10 @@
                             </p:columnGroup>   
 
                             <p:column>
-                                <h:outputText value="#{manageBean.userEntrepriseName(item.idutilisateur)}" />
+                                <h:outputText value="#{manageBean.userEntrepriseName(item.utilisateur)}" />
                             </p:column>
-                            <p:column filterBy="#{item.idutilisateur.login}">
-                                <h:outputText value="#{item.idutilisateur.login}" />
+                            <p:column filterBy="#{item.utilisateur.login}">
+                                <h:outputText value="#{item.utilisateur.login}" />
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{item.description}" />

@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,13 +27,14 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author lstark
  */
 @Entity
+@Table(name = "FanClub")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "FanClub.findAll", query = "SELECT f FROM FanClub f"),
     @NamedQuery(name = "FanClub.findByIdFanclub", query = "SELECT f FROM FanClub f WHERE f.idFanclub = :idFanclub"),
     @NamedQuery(name = "FanClub.findByNom", query = "SELECT f FROM FanClub f WHERE f.nom = :nom"),
     @NamedQuery(name = "FanClub.findByLogo", query = "SELECT f FROM FanClub f WHERE f.logo = :logo"),
-    @NamedQuery(name = "FanClub.findByDestription", query = "SELECT f FROM FanClub f WHERE f.destription = :destription")})
+    @NamedQuery(name = "FanClub.findByDestription", query = "SELECT f FROM FanClub f WHERE f.description = :description")})
 public class FanClub implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,7 +47,11 @@ public class FanClub implements Serializable {
     @Size(max = 254)
     private String logo;
     @Size(max = 254)
-    private String destription;
+    private String description;
+    private String telephone;
+    private String email;
+    private String siteweb;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateCreation;
     @OneToMany(mappedBy = "fanClub", fetch = FetchType.LAZY)
     private List<Membre> membreList;
@@ -82,12 +89,12 @@ public class FanClub implements Serializable {
         this.logo = logo;
     }
 
-    public String getDestription() {
-        return destription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDestription(String destription) {
-        this.destription = destription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getDateCreation() {
@@ -96,6 +103,30 @@ public class FanClub implements Serializable {
 
     public void setDateCreation(Date dateCreation) {
         this.dateCreation = dateCreation;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSiteweb() {
+        return siteweb;
+    }
+
+    public void setSiteweb(String siteweb) {
+        this.siteweb = siteweb;
     }
 
     @XmlTransient

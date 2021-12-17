@@ -14,10 +14,10 @@
               closable="true"
               closeOnEscape="true"
               appendTo="@(body)"
-              width="400px">
+              width="800px">
 
         <f:facet name="header" class="card-header">
-            #{langue['Dialog.title.Creation']} : #{langue.entreprise}
+            #{langue['Dialog.title.Creation']} : #{langue.Membre}
         </f:facet>          
 
         <h:form id="CreateDlgForm" class="form-horizontal" style="width: 100%;">
@@ -25,15 +25,31 @@
             <div class="form-group">
                 <label>
                     #{langue.entreprise} 
-                    <p:selectOneMenu value="#{employesController.societe.idSociete}"
+                    <p:selectOneMenu value="#{employesController.fanClub.idFanclub}"
                                      class="form-control"
                                      filter="true"
                                      filterMatchMode="contains">
                         <f:selectItem itemLabel="#{langue.choisir}" itemValue="0" />
-                        <f:selectItems value="#{employesController.list_societe}"
+                        <f:selectItems value="#{employesController.list_fanClub}"
                                        var="item_el"
-                                       itemLabel="#{item_el.nom} (#{item_el.code})"
-                                       itemValue="#{item_el.idSociete}" />
+                                       itemLabel="#{item_el.nom}"
+                                       itemValue="#{item_el.idFanclub}" />
+                    </p:selectOneMenu>
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    #{langue.type_membre} 
+                    <p:selectOneMenu value="#{employesController.typeMembre.idTypeMembre}"
+                                     class="form-control"
+                                     filter="true"
+                                     filterMatchMode="contains">
+                        <f:selectItem itemLabel="#{langue.choisir}" itemValue="0" />
+                        <f:selectItems value="#{employesController.list_typeMembres}"
+                                       var="item_el"
+                                       itemLabel="#{item_el.libelle}"
+                                       itemValue="#{item_el.idTypeMembre}" />
                     </p:selectOneMenu>
                 </label>
             </div>
@@ -42,7 +58,8 @@
             <div class="form-group">
                 <label>
                     #{langue.matricule}
-                    <p:inputText value="#{employesController.employe.matricule}"
+                    <p:inputText value="#{employesController.membre.matricule}"
+                                 required="true"
                                  class="form-control"/>
                 </label>
             </div>
@@ -50,7 +67,8 @@
             <div class="form-group">
                 <label>
                     #{langue.Nom}
-                    <p:inputText value="#{employesController.employe.nom}"
+                    <p:inputText value="#{employesController.membre.nom}"
+                                 required="true"
                                  class="form-control"/>
                 </label>
             </div>
@@ -58,33 +76,41 @@
             <div class="form-group">
                 <label>
                     #{langue.prenom}
-                    <p:inputText value="#{employesController.employe.prenom}"
+                    <p:inputText value="#{employesController.membre.prenom}"
                                  class="form-control"/>
                 </label>
             </div>
 
             <hr/>
 
-            <div class="form-group">
-                <label>
-                    #{langue.adresse} 
-                    <p:selectOneMenu value="#{employesController.adresse.idadresse}"
-                                     class="form-control"
-                                     filter="true"
-                                     filterMatchMode="contains">
-                        <f:selectItem itemLabel="#{langue.choisir}" itemValue="0" />
-                        <f:selectItems value="#{employesController.list_adresses}"
-                                       var="item_el"
-                                       itemLabel="#{item_el.idquartier.nom} (#{item_el.idquartier.idville.nom} - #{item_el.idquartier.idville.idpays.nom})"
-                                       itemValue="#{item_el.idadresse}" />
-                    </p:selectOneMenu>
-                </label>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>
+                            #{langue.date_naiss}
+                            <p:inputText type="date"
+                                         value="#{employesController.ddn}"
+                                         class="form-control" />                        
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>
+                            #{langue.lieu}
+                            <p:inputText type="text"
+                                         value="#{employesController.membre.ldn}"
+                                         class="form-control" />                        
+                        </label>
+                    </div>
+                </div>
             </div>
+
 
             <div class="form-group">
                 <label>
                     #{langue.telephone}
-                    <p:inputText value="#{employesController.employe.tel}"
+                    <p:inputText value="#{employesController.membre.tel}"
                                  class="form-control"
                                  type="tel"/>
                 </label>
@@ -93,12 +119,39 @@
             <div class="form-group">
                 <label>
                     #{langue.email}
-                    <p:inputText value="#{employesController.employe.email}"
+                    <p:inputText value="#{employesController.membre.email}"
                                  type="email"
                                  class="form-control"
                                  />
                 </label>
             </div>
+            
+            <hr />
+            
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>
+                            #{langue.cni}
+                            <p:inputText type="text"
+                                         value="#{employesController.membre.cni}"
+                                         class="form-control" />                        
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>
+                            #{langue.passport}
+                            <p:inputText type="text"
+                                         value="#{employesController.membre.pssd}"
+                                         class="form-control" />                        
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            
 
             <p:separator />
 
@@ -109,13 +162,13 @@
                                      value="#{langue.Annuler}"
                                      onclick="PF('CreateDialog').hide()"
                                      icon="pi pi-times"/>
-                    
+
                     <p:commandButton styleClass="ui-button ui-button-success"
                                      value="#{langue.enregistrer}"
                                      actionListener="#{employesController.save()}"
                                      update=":ViewForm"
                                      icon="pi pi-check"/>
-                    
+
                 </center>
             </h:panelGroup>
 

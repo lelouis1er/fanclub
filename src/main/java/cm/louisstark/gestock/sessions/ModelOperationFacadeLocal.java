@@ -29,5 +29,7 @@ public interface ModelOperationFacadeLocal {
     List<ModelOperation> findRange(int[] range);
 
     int count();
+
+    public Integer nextId();
     
 }
