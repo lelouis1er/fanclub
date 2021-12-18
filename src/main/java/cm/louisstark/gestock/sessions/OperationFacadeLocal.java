@@ -5,6 +5,7 @@
  */
 package cm.louisstark.gestock.sessions;
 
+import cm.louisstark.gestock.entities.Membre;
 import cm.louisstark.gestock.entities.Operation;
 import cm.louisstark.gestock.entities.SessionOp;
 import java.util.List;
@@ -28,11 +29,14 @@ public interface OperationFacadeLocal {
     List<Operation> findAll();
 
     List<Operation> findRange(int[] range);
+    
+    List<Operation> findAllBy_session(SessionOp cycleEntreprise);
+    
+    List<Operation> findAllBy_session_membre(SessionOp cycleEntreprise, Membre membre);
 
     int count();
     
     long nextId();
 
-    public List<Operation> findAllBy_session(SessionOp cycleEntreprise);
     
 }

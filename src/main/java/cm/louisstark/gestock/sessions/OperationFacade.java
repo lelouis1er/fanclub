@@ -5,6 +5,7 @@
  */
 package cm.louisstark.gestock.sessions;
 
+import cm.louisstark.gestock.entities.Membre;
 import cm.louisstark.gestock.entities.Operation;
 import cm.louisstark.gestock.entities.SessionOp;
 import java.util.ArrayList;
@@ -52,6 +53,19 @@ public class OperationFacade extends AbstractFacade<Operation> implements Operat
         } catch (Exception e) {
         }
         return 1l;
+    }
+
+    @Override
+    public List<Operation> findAllBy_session_membre(SessionOp so, Membre membre) {
+        Query q = em.createQuery("SELECT o FROM Operation o WHERE o.sessionOp.idSession = :id_s AND o.membre.idmembre = :id_m");
+        try {
+            q.setParameter("id_s", so.getIdSession());
+            q.setParameter("id_m", membre.getIdmembre());
+            return q.getResultList();
+        } catch (Exception e) {
+        }
+        return new ArrayList<>();
+        
     }
     
 }
