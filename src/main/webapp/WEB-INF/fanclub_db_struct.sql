@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `fanclub_db` /*!40100 DEFAULT CHARACTER SET utf8m
 USE `fanclub_db`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Linux (x86_64)
 --
--- Host: localhost    Database: fanclub_db
+-- Host: 127.0.0.1    Database: fanclub_db
 -- ------------------------------------------------------
 -- Server version	8.0.27-0ubuntu0.21.04.1
 
@@ -28,21 +28,15 @@ CREATE TABLE `FanClub` (
   `idFanclub` int NOT NULL,
   `nom` varchar(254) DEFAULT NULL,
   `logo` varchar(254) DEFAULT NULL,
-  `destription` varchar(254) DEFAULT NULL,
+  `description` varchar(254) DEFAULT NULL,
   `dateCreation` varchar(45) DEFAULT NULL,
+  `telephone` varchar(45) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `siteweb` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idFanclub`),
   UNIQUE KEY `FANCLUB_PK` (`idFanclub`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `FanClub`
---
-
-LOCK TABLES `FanClub` WRITE;
-/*!40000 ALTER TABLE `FanClub` DISABLE KEYS */;
-/*!40000 ALTER TABLE `FanClub` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `Membre`
@@ -74,15 +68,6 @@ CREATE TABLE `Membre` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Membre`
---
-
-LOCK TABLES `Membre` WRITE;
-/*!40000 ALTER TABLE `Membre` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Membre` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Menu`
 --
 
@@ -100,16 +85,6 @@ CREATE TABLE `Menu` (
   CONSTRAINT `FK_MENU_ASSOCIATI_MENU` FOREIGN KEY (`Men_idmenu`) REFERENCES `Menu` (`idmenu`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Menu`
---
-
-LOCK TABLES `Menu` WRITE;
-/*!40000 ALTER TABLE `Menu` DISABLE KEYS */;
-INSERT INTO `Menu` VALUES (1,NULL,'Parametres','/geStock/parametres/general/index.xhtml'),(2,NULL,'utilisateur','/geStock/parametres/securite/utilisateurs/utilisateurs.xhtml');
-/*!40000 ALTER TABLE `Menu` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ModelOperation`
@@ -130,15 +105,6 @@ CREATE TABLE `ModelOperation` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ModelOperation`
---
-
-LOCK TABLES `ModelOperation` WRITE;
-/*!40000 ALTER TABLE `ModelOperation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ModelOperation` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Mouchard`
 --
 
@@ -157,15 +123,6 @@ CREATE TABLE `Mouchard` (
   CONSTRAINT `FK_MOUCHARD_ASSOCIATI_UTILISAT` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Mouchard`
---
-
-LOCK TABLES `Mouchard` WRITE;
-/*!40000 ALTER TABLE `Mouchard` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Mouchard` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `Operation`
@@ -193,15 +150,6 @@ CREATE TABLE `Operation` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Operation`
---
-
-LOCK TABLES `Operation` WRITE;
-/*!40000 ALTER TABLE `Operation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Operation` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `PrivilegesUtilisateur`
 --
 
@@ -220,16 +168,6 @@ CREATE TABLE `PrivilegesUtilisateur` (
   CONSTRAINT `FK_PRIVILEG_ASSOCIATI_MENU` FOREIGN KEY (`idmenu`) REFERENCES `Menu` (`idmenu`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `PrivilegesUtilisateur`
---
-
-LOCK TABLES `PrivilegesUtilisateur` WRITE;
-/*!40000 ALTER TABLE `PrivilegesUtilisateur` DISABLE KEYS */;
-INSERT INTO `PrivilegesUtilisateur` VALUES (1,1,'Privilege parametre','permet l\'acces au parametres',NULL),(2,2,'Privilege utilisateur','',NULL);
-/*!40000 ALTER TABLE `PrivilegesUtilisateur` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `RestrictionPrivilege`
@@ -256,15 +194,6 @@ CREATE TABLE `RestrictionPrivilege` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `RestrictionPrivilege`
---
-
-LOCK TABLES `RestrictionPrivilege` WRITE;
-/*!40000 ALTER TABLE `RestrictionPrivilege` DISABLE KEYS */;
-/*!40000 ALTER TABLE `RestrictionPrivilege` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `RolePrivilege`
 --
 
@@ -288,16 +217,6 @@ CREATE TABLE `RolePrivilege` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `RolePrivilege`
---
-
-LOCK TABLES `RolePrivilege` WRITE;
-/*!40000 ALTER TABLE `RolePrivilege` DISABLE KEYS */;
-INSERT INTO `RolePrivilege` VALUES (1,1,2,1,1,1),(2,2,2,1,1,0);
-/*!40000 ALTER TABLE `RolePrivilege` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `RoleUtilisateur`
 --
 
@@ -312,16 +231,6 @@ CREATE TABLE `RoleUtilisateur` (
   UNIQUE KEY `ROLEUTILISATEUR_PK` (`idrole`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `RoleUtilisateur`
---
-
-LOCK TABLES `RoleUtilisateur` WRITE;
-/*!40000 ALTER TABLE `RoleUtilisateur` DISABLE KEYS */;
-INSERT INTO `RoleUtilisateur` VALUES (1,'Super admin','su'),(2,'Admin','admin');
-/*!40000 ALTER TABLE `RoleUtilisateur` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `SessionOp`
@@ -344,15 +253,6 @@ CREATE TABLE `SessionOp` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `SessionOp`
---
-
-LOCK TABLES `SessionOp` WRITE;
-/*!40000 ALTER TABLE `SessionOp` DISABLE KEYS */;
-/*!40000 ALTER TABLE `SessionOp` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `TypeMembre`
 --
 
@@ -368,15 +268,6 @@ CREATE TABLE `TypeMembre` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `TypeMembre`
---
-
-LOCK TABLES `TypeMembre` WRITE;
-/*!40000 ALTER TABLE `TypeMembre` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TypeMembre` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `TypeOperation`
 --
 
@@ -390,15 +281,6 @@ CREATE TABLE `TypeOperation` (
   UNIQUE KEY `TYPEOPERATION_PK` (`idType`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `TypeOperation`
---
-
-LOCK TABLES `TypeOperation` WRITE;
-/*!40000 ALTER TABLE `TypeOperation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TypeOperation` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `Utilisateur`
@@ -430,16 +312,6 @@ CREATE TABLE `Utilisateur` (
   CONSTRAINT `FK_UTILISAT_ASSOCIATI_ROLEUTIL` FOREIGN KEY (`idrole`) REFERENCES `RoleUtilisateur` (`idrole`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Utilisateur`
---
-
-LOCK TABLES `Utilisateur` WRITE;
-/*!40000 ALTER TABLE `Utilisateur` DISABLE KEYS */;
-INSERT INTO `Utilisateur` VALUES (1,1,NULL,'superadmin','$2a$12$hPX.X5gfFPKGySicqt.hk.wyIrnFX1EZBgyY/3v0zRrsAM5wFFiM.','Lafortune Kadjo','super utilisateur du système',1,0,'su.png',NULL,NULL,NULL,NULL),(2,2,NULL,'admin','$2a$12$r2FPXyXxS/WyBFhrWWaC0.Xa/Q9lVKhMkkDHfKyO8Ptw9bIKjHKm.','Louis Stark',NULL,1,0,NULL,'2021-02-20 23:00:00',NULL,NULL,NULL);
-/*!40000 ALTER TABLE `Utilisateur` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -450,4 +322,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-12 18:14:13
+-- Dump completed on 2021-12-18 13:40:20
