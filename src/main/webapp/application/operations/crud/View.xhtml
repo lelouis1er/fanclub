@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form id="ViewForm">
+
+        <div class="card">
+            <div class="card-header">
+                #{langue.liste_menus}
+            </div>
+
+            <div class="card-body">
+                <p:contextMenu id="ViewContextMenu" for="datalist">  
+                    <p:menuitem value="#{langue.ajouter}" onclick="document.getElementById('ActionForm:create').click();" icon="ui-icon-plus"/>                
+                    <p:menuitem value="#{langue.modifier}" onclick="document.getElementById('ActionForm:update').click();" icon="ui-icon-pencil"/>
+                    <p:menuitem value="#{langue.supprimer}" onclick="document.getElementById('ActionForm:delete').click();" icon="ui-icon-trash"/>
+                    <p:separator/>
+                </p:contextMenu>
+
+                <p:dataTable id="datalist"
+                             value="#{operationController.list_operations}"
+                             var="item"
+                             emptyMessage="#{langue.tableau_vide}"
+                             rows="20"
+                             rowKey="#{item.idOperation}"
+                             rowsPerPageTemplate="20,40,60,80,100"
+                             selection="#{operationController.operation}"
+                             selectionMode="single"
+                             paginator="true"
+                             paginatorPosition="bottom"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+
+                    <p:ajax event="rowSelect" update=":ActionForm, :ViewForm:ViewContextMenu" />
+
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column headerText="#{langue.Date}"
+                                      style="width: 20%" />
+                            <p:column headerText="#{langue.type_operation}"
+                                      style="width: 20%" />
+                            <p:column headerText="#{langue.Membre}"
+                                      style="width: 40%;" />
+                            <p:column headerText="#{langue.montant}" />
+                                      
+                        </p:row>
+                    </p:columnGroup>
+
+                    <p:column filterBy="#{item.dateOperation}"
+                              filterMatchMode="contains"
+                              filterable="true">
+                        <h:outputText value="#{item.dateOperation}">
+                            <f:convertDateTime dateStyle="medium"
+                                               locale="#{request.locale}"
+                                               type="date"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column filterBy="#{item.modelOperation.libelle}"
+                              filterMatchMode="contains"
+                              filterable="true">
+                        #{item.modelOperation.libelle}
+                    </p:column>
+                    
+                    <p:column filterBy="#{item.membre.nom} #{item.membre.prenom}"
+                              filterMatchMode="contains"
+                              filterable="true">
+                        #{item.membre.nom} #{item.membre.prenom}
+                    </p:column>
+                    
+                    <p:column filterBy="#{item.montant}"
+                              filterMatchMode="startof"
+                              filterable="true">
+                        <h:outputText value="#{item.montant}">
+                            <f:convertNumber type="currency" 
+                                             currencySymbol="FCFA"/>
+                        </h:outputText>
+                    </p:column>
+                    
+
+                </p:dataTable>
+            </div>
+        </div>
+
+    </h:form>
+
+</ui:composition>
+

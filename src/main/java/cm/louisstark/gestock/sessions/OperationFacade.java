@@ -6,9 +6,13 @@
 package cm.louisstark.gestock.sessions;
 
 import cm.louisstark.gestock.entities.Operation;
+import cm.louisstark.gestock.entities.SessionOp;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +31,27 @@ public class OperationFacade extends AbstractFacade<Operation> implements Operat
 
     public OperationFacade() {
         super(Operation.class);
+    }
+
+    @Override
+    public List<Operation> findAllBy_session(SessionOp cycleEntreprise) {
+        Query q = em.createQuery("SELECT o FROM Operation o WHERE o.sessionOp.idSession = :id_s");
+        try {
+            q.setParameter("id_s", cycleEntreprise.getIdSession());
+            return q.getResultList();
+        } catch (Exception e) {
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public long nextId() {
+        Query q = em.createQuery("SELECT MAX(o.idOperation) FROM Operation o");
+        try {
+            return (Long) q.getResultList().get(0) + 1;
+        } catch (Exception e) {
+        }
+        return 1l;
     }
     
 }

@@ -17,7 +17,6 @@
             <ui:include src="/WEB-INF/pages/admin_index.xhtml"/>
         </h:panelGroup>
         
-        est un employe : #{manageBean.is_employee()}
         
         <h:panelGroup  rendered="#{manageBean.is_employee()}" >
             <ui:include src="/WEB-INF/pages/user_index.xhtml"/>

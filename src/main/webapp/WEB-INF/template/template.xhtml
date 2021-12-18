@@ -88,8 +88,10 @@
             </p>
 
             <ui:include src="app_infos.xhtml" />
-            <ui:include src="choose_session.xhtml" />
+            <ui:include src="choose_session.xhtml" rendered="#{manageBean.is_employee()}" />
+            <ui:include src="initOperationDialog.xhtml" rendered="#{manageBean.user_can_do_it('INITIATE_OPERATION') and manageBean.is_employee()}" />
 
+            
             <p:growl id="growl"
                      widgetVar="growl"
                      showDetail="true"/>

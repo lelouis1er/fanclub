@@ -6,6 +6,7 @@
 package cm.louisstark.gestock.sessions;
 
 import cm.louisstark.gestock.entities.Operation;
+import cm.louisstark.gestock.entities.SessionOp;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,9 @@ public interface OperationFacadeLocal {
     List<Operation> findRange(int[] range);
 
     int count();
+    
+    long nextId();
+
+    public List<Operation> findAllBy_session(SessionOp cycleEntreprise);
     
 }

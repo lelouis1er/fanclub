@@ -52,6 +52,8 @@ public interface SessionManager{
     
     boolean user_can_delete();
     
+    boolean user_can_do_it(String action);
+    
     Boolean is_employee ();
     
     FanClub get_user_enterprise();

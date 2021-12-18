@@ -240,6 +240,36 @@ public class SessionManagerImpl implements SessionManager, Serializable {
     }
 
     @Override
+    public boolean user_can_do_it(String action) {
+        try {
+            if (action == null || action == "") {
+                return false;
+            }
+            if (getSessionRoleUser().getCoderole().equals("su")) {
+                return true;
+            }
+            for (RestrictionPrivilege r : getAllUserRestrictions()) {
+                if (action.equals(r.getPrivilegesUtilisateur().getMenu().getRessource())) {
+                    if (r.getRestrictUp()) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+            for (RolePrivilege r : getAllUserRolePrivileges()) {
+                if (action.equals(r.getPrivilegesUtilisateur().getMenu().getRessource())) {
+                    return true;
+                }
+            }
+
+        } catch (Exception e) {
+        }
+
+        return false;
+    }
+
+    @Override
     public List<Mouchard> getUserLogedActivity() {
         return mouchardFacadeLocal.findAll_by_user(getSessionUser());
     }

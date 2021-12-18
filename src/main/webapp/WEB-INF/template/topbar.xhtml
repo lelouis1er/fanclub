@@ -37,6 +37,16 @@
             </ul>
             <ul class="navbar-nav ml-auto">
 
+                <li class="nav-item">
+                    <p:commandButton value="#{langue.nouveau}"
+                                     styleClass="ui-button ui-button-xs ui-button-primary"
+                                     icon="pi pi-plus"
+                                     rendered="#{manageBean.user_can_do_it('INITIATE_OPERATION') and manageBean.is_employee()}"
+                                     actionListener = "#{operationController.prepareCreate()}"
+                                     update=":OPcreate"/>
+
+                </li>
+
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -84,12 +94,12 @@
                             <i class="fas fa-sign-out"></i>
                             #{langue.deconnexion}
                         </p:commandLink>
-<!--
-                        <a class="dropdown-item" href="?logout">
-                            <i class="fas fa-sign-out"></i>
-                            #{langue.deconnexion}
-                        </a>
--->
+                        <!--
+                                                <a class="dropdown-item" href="?logout">
+                                                    <i class="fas fa-sign-out"></i>
+                        #{langue.deconnexion}
+                    </a>
+                        -->
                     </div>
                 </li>
             </ul>
