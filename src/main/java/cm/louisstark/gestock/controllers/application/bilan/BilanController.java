@@ -36,7 +36,8 @@ public class BilanController extends SuperController implements Serializable {
     @Override
     public void define_list_operations() {
         try {
-                
+            list_operations.clear();
+            
             if (membre != null && membre.getIdmembre() != null && membre.getIdmembre() != 0) {
                 
                 list_operations = operationFacadeLocal.findAllBy_session_membre(sessionManager.getCycleEntreprise(), membre);
@@ -57,7 +58,13 @@ public class BilanController extends SuperController implements Serializable {
     }
     
     
-    
+    public double calcul_total() {
+        double result = 0d;
+        for (Operation temp : list_operations) {
+            result += temp.getMontant();
+        }
+        return result;
+    }
 
     
     

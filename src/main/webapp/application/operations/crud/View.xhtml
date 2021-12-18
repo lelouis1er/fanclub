@@ -40,12 +40,15 @@
                     <p:columnGroup type="header">
                         <p:row>
                             <p:column headerText="#{langue.Date}"
-                                      style="width: 20%" />
+                                      style="" />
                             <p:column headerText="#{langue.type_operation}"
-                                      style="width: 20%" />
+                                      style="" />
                             <p:column headerText="#{langue.Membre}"
-                                      style="width: 40%;" />
-                            <p:column headerText="#{langue.montant}" />
+                                      style="" />
+                            <p:column headerText="#{langue.montant}"
+                                      style="" />
+                            <p:column headerText="#{langue.Description}"
+                                      style="" />
                                       
                         </p:row>
                     </p:columnGroup>
@@ -80,6 +83,11 @@
                                              currencySymbol="FCFA"/>
                         </h:outputText>
                     </p:column>
+                    
+                    <p:column >
+                        #{item.descriptionOp} 
+                    </p:column>
+                    
                     
 
                 </p:dataTable>

@@ -43,6 +43,7 @@ public class Operation implements Serializable {
     private Long idOperation;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOperation;
+    private String descriptionOp;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     private Float montant;
     @JoinColumns({
@@ -114,6 +115,14 @@ public class Operation implements Serializable {
 
     public void setSessionOp(SessionOp sessionOp) {
         this.sessionOp = sessionOp;
+    }
+
+    public String getDescriptionOp() {
+        return descriptionOp;
+    }
+
+    public void setDescriptionOp(String descriptionOp) {
+        this.descriptionOp = descriptionOp;
     }
 
     @Override

@@ -138,6 +138,7 @@ CREATE TABLE `Operation` (
   `idmembre` int NOT NULL,
   `dateOperation` timestamp NULL DEFAULT NULL,
   `montant` float DEFAULT NULL,
+  `descriptionOp` VARCHAR(200) NULL,
   PRIMARY KEY (`idOperation`),
   UNIQUE KEY `OPERATION_PK` (`idOperation`),
   KEY `ASSOCIATION13_FK` (`idmembre`),
